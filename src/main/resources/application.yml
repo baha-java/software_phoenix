@@ -2,7 +2,7 @@ spring:
   application:
     name: software_phoenix
   profiles:
-    active: @spring.profiles.active@
+    active: dev
   server:
     port: ${PORT:8080}
   datasource:
