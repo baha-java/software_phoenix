@@ -1,6 +1,8 @@
 spring:
   application:
     name: software_phoenix
+  profiles:
+    active: @spring.profiles.active@
   server:
     port: ${PORT:8080}
   datasource:
