@@ -7,9 +7,9 @@ services:
     ports:
       - "5433:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_USER=database_7cnh_user
+      - POSTGRES_PASSWORD=sjAPU78oxbLrXDDteVCC7sUoHM9Cur6X
+      - POSTGRES_DB=database_7cnh
 
 
   software_phoenix:
@@ -20,9 +20,9 @@ services:
       - "8080:8080"
     container_name: software_phoenix
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-coklvatjm4es7391ovf0-a.oregon-postgres.render.com/database_7cnh
+      - SPRING_DATASOURCE_USERNAME=database_7cnh_user
+      - SPRING_DATASOURCE_PASSWORD=sjAPU78oxbLrXDDteVCC7sUoHM9Cur6X
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
 
