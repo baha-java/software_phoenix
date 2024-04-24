@@ -21,7 +21,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Копирование собранного JAR-файла из сборочного этапа
-COPY --from=build /app/target/software_phoenix.jar app.jar
+COPY --from=build /app/target/software_phoenix-0.0.1-SNAPSHOT.jar app.jar
 
 # Определение точки входа для запуска приложения
 ENTRYPOINT ["java", "-jar", "app.jar"]
