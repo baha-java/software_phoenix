@@ -30,4 +30,9 @@ public class AuthenticateController {
         log.info("IN signin - request: {}", signInRequestDto);
         return ResponseEntity.ok(authService.signIn(signInRequestDto));
     }
+
+    @GetMapping
+    public String get(){
+        return "hello world!";
+    }
 }
