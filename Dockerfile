@@ -1,21 +1,30 @@
-FROM openjdk:17
+# Сначала выбираем образ с Maven для сборочного этапа
+FROM maven:3.8.4-openjdk-17 AS build
 
-# Устанавливаем Maven
-RUN apt-get update && apt-get install -y maven
-
-# Устанавливаем рабочий каталог в /app
-VOLUME /app
+# Установка рабочего каталога
 WORKDIR /app
 
-# Копируем файлы Maven в контейнер и выполняем сборку проекта
-COPY . .
-RUN mvn clean package
+# Копирование файла pom.xml для загрузки зависимостей
+COPY pom.xml .
 
-# Устанавливаем рабочий каталог для запуска приложения
-WORKDIR /software_phoenix
+# Загрузка зависимостей Maven (это ускорит процесс сборки, если файлы pom.xml не изменялись)
+RUN mvn dependency:go-offline -B
 
-# Копируем собранный JAR-файл в контейнер
-COPY ./target/software_phoenix-0.0.1-SNAPSHOT.jar .
+# Копирование остальных файлов проекта и выполнение сборки
+COPY src ./src
+RUN mvn package -DskipTests
 
-# Указываем точку входа для запуска приложения
-ENTRYPOINT ["java", "-jar", "software_phoenix-0.0.1-SNAPSHOT.jar"]
+# Создание финального образа с JRE
+FROM openjdk:17-jdk-slim
+
+# Установка рабочего каталога
+WORKDIR /app
+
+# Копирование собранного JAR-файла из сборочного этапа
+COPY --from=build /app/target/software_phoenix.jar app.jar
+
+# Определение точки входа для запуска приложения
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Опционально: открываем порт, если ваше приложение слушает на определенном порту
+EXPOSE 8080
