@@ -1,5 +1,9 @@
 server:
   port: 8185
+  forward-headers-strategy: framework
+springdoc:
+  swagger-ui:
+    path: '/swagger-ui.html'
 spring:
   application:
     name: software_phoenix
