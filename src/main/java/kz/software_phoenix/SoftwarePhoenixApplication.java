@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @OpenAPIDefinition(servers = {
-        @Server(url = "http://localhost:8185"),
-        @Server(url = "https://software-phoenix.onrender.com")
+        @Server(url = "https://software-phoenix.onrender.com"),
+        @Server(url = "http://localhost:8185")
 })
 public class SoftwarePhoenixApplication {
 
