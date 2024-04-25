@@ -21,7 +21,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -39,8 +38,8 @@ public class SecurityConfig {
                 .cors(corsConfiguration -> corsConfiguration
                         .configurationSource(request -> {
                             CorsConfiguration cors = new CorsConfiguration();
-                            cors.setAllowedOrigins(List.of("https://software-phoenix.onrender.com")); // Здесь указываются разрешенные источники (домены)
-                            cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Разрешенные HTTP методы
+                            cors.setAllowedOrigins(List.of("*")); // Здесь указываются разрешенные источники (домены)
+                            cors.setAllowedMethods(List.of("*")); // Разрешенные HTTP методы
                             cors.setAllowedHeaders(List.of("*")); // Разрешенные заголовки
                             return cors;
                         }))
