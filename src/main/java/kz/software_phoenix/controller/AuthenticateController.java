@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Tag(name = "Authentication", description = "The Authentication API. Contains operations like sign up and sign in.")
 @RestController
-//@CrossOrigin(origins = "https://software-phoenix.onrender.com")
+@CrossOrigin(origins = "https://software-phoenix.onrender.com")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/auth")
 public class AuthenticateController {
